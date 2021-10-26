@@ -1,7 +1,7 @@
 import React from 'react'
 // import {url} from '../url/url.link'
 import GetLast from '../component/GetlastdataimpComponent'
-import MainChart from '../component/chart/mainchart'
+import MainChart from '../component/chart/Mainchart'
 
 function main() {
  

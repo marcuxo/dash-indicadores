@@ -1,1 +1,6 @@
-export const url = 'http://localhost:4087'
+let url = "http://localhost:4087"
+
+module.exports = {
+  url
+}
+

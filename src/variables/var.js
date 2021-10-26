@@ -1,1 +1,5 @@
-export const token = sessionStorage.getItem('token')
+const token = sessionStorage.getItem('token')
+
+module.exports = {
+  token
+}
