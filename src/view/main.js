@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import {url} from '../url/url.link'
 import GetLast from '../component/GetlastdataimpComponent'
 import MainChart from '../component/chart/Mainchart'
+import MainchartDos from '../component/chart/MainChartDos'
 
-function main() {
+function main({token}) {
  
-
   return (
     <>
     <div className="container">
@@ -19,12 +19,12 @@ function main() {
       <div className="row">
         <div className="col-12 col-md-6 py-2">
           <div className="fondostatico">
-            <MainChart titulo={"Consumo Pozos"} />
+            <MainChart token={token} titulo={"Consumo Pozos"} />
           </div>
         </div>
         <div className="col-12 col-md-6 py-2">
           <div className="fondostatico">
-            <MainChart titulo={"Consumo Empalmes"} />
+            <MainchartDos token={token} titulo={"Consumo Empalmes"} />
           </div>
         </div>
       </div>

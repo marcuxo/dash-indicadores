@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import LoginComp from './component/LoginComponent';
 import Main from './view/main';
+import OutOfApp from './component/OutOfApp';
 import NotFound from './view/notfounh';
 import {BrowserRouter as Router, Switch, Link} from 'react-router-dom';
 
@@ -57,7 +58,7 @@ function App() {
       value={{state,dispatch}}
     >
       <div className="App">
-        {!state.isAuthenticated
+        {!state.token
         ? <LoginComp />
         : 
         <Router>
@@ -65,12 +66,14 @@ function App() {
               <img src="./favicon.jpg" className="rounded-circle" alt=""/>
             <div className="d-flex justify-content-end ">
               <div><Link className="btn btn-sm btn-secondary mx-2" to='/'><span className="text-white">Inicio</span></Link></div>
+              <div><Link className="btn btn-sm btn-danger mx-2" to='/outapp'><span className="text-white">Salir</span></Link></div>
               {/* <div><Link className="btn btn-sm btn-secondary mx-2" to='/'><span className="text-white">Medidores</span></Link></div> */}
             </div>
           </div>
           
           <Switch>
-              <Router exact path='/'><Main /></Router>
+              <Router exact path='/'><Main token={state.token} /></Router>
+              <Router exact path='/outapp'><OutOfApp /></Router>
               {/* <Router exact path='/'>< /></Router> */}
               <Router path='*'><NotFound /></Router>
           </Switch>

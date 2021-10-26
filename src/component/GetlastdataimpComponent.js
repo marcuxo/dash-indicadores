@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import {url} from '../url/url.link'
-import {token} from '../variables/var'
 
 export default function GetlastdataimpComponent() {
   const [ultimo, setultimo] = useState("")
@@ -9,13 +8,13 @@ export default function GetlastdataimpComponent() {
     fetch(url+'/getlastfechainp',{
       method: 'POST',
       headers: {
-        'authorization': token,
+        'authorization': sessionStorage.getItem('token'),
         'Content-Type': 'application/json'
       }
     })
     .then(res=>res.json())
     .then(res=>{
-      console.log(res.data.body)
+      // console.log(res.data.body)
       setultimo(res.data.body)
     })
     

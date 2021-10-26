@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Chart from 'react-apexcharts'
 import {url} from '../../url/url.link'
 
-function Mainchart({titulo,token}) {
+function MainchartDos({titulo,token}) {
   const [categoria, setCategoria] = useState(['Buscando'])
   const [serie, setSerie] = useState([{name:"",data:[0]}])
   const dataGraf = async () => {
@@ -29,44 +29,49 @@ function Mainchart({titulo,token}) {
   },[])
 
   let state = {
-    series: serie,
+    series: [{
+      name: 'empalme1',
+      type: 'bar',
+      data: [440, 505, 414, 671, 227]
+    }, {
+      name: 'consumo',
+      type: 'line',
+      data: [1023, 11042, 1035, 11027, 1043]
+    }, {
+      name: 'empalme2',
+      type: 'bar',
+      data: [203, 202, 205, 207, 203]
+    }, {
+      name: 'empalme3',
+      type: 'bar',
+      data: [103, 101, 105, 107, 103]
+    }],
     options: {
       chart: {
-        type: 'bar',
-        height: 430
+        height: 350,
+        type: 'line',
       },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          dataLabels: {
-            position: 'top',
-          },
-        }
+      stroke: {
+        width: [0, 4]
       },
       dataLabels: {
         enabled: false,
-        offsetX: -6,
-        style: {
-          fontSize: '12px',
-          colors: ['#000']
-        }
+        enabledOnSeries: [1]
       },
-      stroke: {
-        show: false,
-        width: 0,
-        colors: ['#fff']
-      },
-      tooltip: {
-        shared: true,
-        intersect: false
-      },
+      labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001'],
+
       xaxis: {
-        categories: categoria,
+        type: 'datetime'
       },
       yaxis: [{
         title: {
-          text: 'Consumo cm3',
+          text: 'Empalmes',
         },
+      }, {
+        opposite: true,
+        title: {
+          text: 'Consumos'
+        }
       }]
     },
   }
@@ -77,10 +82,10 @@ function Mainchart({titulo,token}) {
         <Chart
           options={state.options || null}
           series={state.series || null}
-          type="bar"
+          type="line"
         />
     </div>
   )
 }
 
-export default Mainchart
+export default MainchartDos
