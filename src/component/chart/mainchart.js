@@ -3,7 +3,7 @@ import Chart from 'react-apexcharts'
 import {url} from '../../url/url.link'
 
 function Mainchart({titulo,token}) {
-  const [categoria, setCategoria] = useState(['Buscando'])
+  const [categoria, setCategoria] = useState(['Cargando'])
   const [serie, setSerie] = useState([{name:"",data:[0]}])
   const dataGraf = async () => {
     

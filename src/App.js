@@ -4,6 +4,8 @@ import LoginComp from './component/LoginComponent';
 import Main from './view/main';
 import OutOfApp from './component/OutOfApp';
 import NotFound from './view/notfounh';
+import Mantenedor from './view/Mantenedor';
+import Graficar from './view/Graficar';
 import {BrowserRouter as Router, Switch, Link} from 'react-router-dom';
 
 export const AuthContext = React.createContext();
@@ -65,14 +67,18 @@ function App() {
           <div className="container-fluid text-center mb-3 mainmenuh">
               <img src="./favicon.jpg" className="rounded-circle" alt=""/>
             <div className="d-flex justify-content-end ">
-              <div><Link className="btn btn-sm btn-secondary mx-2" to='/'><span className="text-white">Inicio</span></Link></div>
-              <div><Link className="btn btn-sm btn-danger mx-2" to='/outapp'><span className="text-white">Salir</span></Link></div>
+              <div><Link className="btn btn-sm btn-info mx-2" to='/'><span className="text-white"><i className="fas fa-home"></i> Inicio</span></Link></div>
+              <div><Link className="btn btn-sm btn-info mx-2" to='/mantenedor'><span className="text-white"><i className="far fa-edit"></i> Mantenedor</span></Link></div>
+              <div><Link className="btn btn-sm btn-info mx-2" to='/graficar'><span className="text-white"><i className="far fa-chart-bar"></i> Graficar</span></Link></div>
+              <div><Link className="btn btn-sm btn-danger mx-2" to='/outapp'><span className="text-white"><i className="fas fa-sign-out-alt"></i> Salir</span></Link></div>
               {/* <div><Link className="btn btn-sm btn-secondary mx-2" to='/'><span className="text-white">Medidores</span></Link></div> */}
             </div>
           </div>
           
           <Switch>
               <Router exact path='/'><Main token={state.token} /></Router>
+              <Router exact path='/graficar'><Graficar token={state.token} /></Router>
+              <Router exact path='/mantenedor'><Mantenedor token={state.token} /></Router>
               <Router exact path='/outapp'><OutOfApp /></Router>
               {/* <Router exact path='/'>< /></Router> */}
               <Router path='*'><NotFound /></Router>

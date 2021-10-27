@@ -3,11 +3,11 @@ import Chart from 'react-apexcharts'
 import {url} from '../../url/url.link'
 
 function MainchartDos({titulo,token}) {
-  const [categoria, setCategoria] = useState(['Buscando'])
+  const [categoria, setCategoria] = useState(['Cargando'])
   const [serie, setSerie] = useState([{name:"",data:[0]}])
   const dataGraf = async () => {
     
-    let response = await fetch(url+'/getconsumopzs',{
+    let response = await fetch(url+'/getConsumoEmpalm',{
       method: 'POST',
       headers: {
         'authorization': token,
@@ -17,9 +17,11 @@ function MainchartDos({titulo,token}) {
     })
     // return fetchOne
     const data = await response.json()
-    await lodData(data.data.body.arrgeneral,data.data.body.categorias)
+    
+    await lodData(data.data.body.series,data.data.body.categoria)
   }
   const lodData = async (data, data2) => {
+    //console.log(data, data2)
     setSerie(data)
     setCategoria(data2)
   }
@@ -29,39 +31,24 @@ function MainchartDos({titulo,token}) {
   },[])
 
   let state = {
-    series: [{
-      name: 'empalme1',
-      type: 'bar',
-      data: [440, 505, 414, 671, 227]
-    }, {
-      name: 'consumo',
-      type: 'line',
-      data: [1023, 11042, 1035, 11027, 1043]
-    }, {
-      name: 'empalme2',
-      type: 'bar',
-      data: [203, 202, 205, 207, 203]
-    }, {
-      name: 'empalme3',
-      type: 'bar',
-      data: [103, 101, 105, 107, 103]
-    }],
+    series: serie,
     options: {
       chart: {
         height: 350,
-        type: 'line',
+        type: 'bar',
       },
       stroke: {
+        curve: 'smooth',
         width: [0, 4]
       },
       dataLabels: {
         enabled: false,
         enabledOnSeries: [1]
       },
-      labels: ['01 Jan 2001', '02 Jan 2001', '03 Jan 2001', '04 Jan 2001', '05 Jan 2001'],
+      labels: categoria,
 
       xaxis: {
-        type: 'datetime'
+        type: 'text'
       },
       yaxis: [{
         title: {

@@ -1,5 +1,9 @@
 .fondostatico {
   background-color: rgba(240, 248, 255, 0.433);
   border-radius: 10px;
-  
+}
+
+.clean-padding {
+  padding-right: 0px;
+  padding-left: 0px;
 }

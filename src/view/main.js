@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 // import {url} from '../url/url.link'
 import GetLast from '../component/GetlastdataimpComponent'
 import MainChart from '../component/chart/Mainchart'

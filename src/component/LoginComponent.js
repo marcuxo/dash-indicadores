@@ -40,7 +40,7 @@ function LoginComponent() {
     })
     .then(res => res.json())
     .then(resp => {
-      console.log(resp.data)
+      //console.log(resp.data)
       // console.log(resp.data.token)
       // console.log(resp.data.name.nombre)
       // console.log(resp.data.name.user)
