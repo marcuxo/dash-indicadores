@@ -52,7 +52,7 @@ function MainchartDos({titulo,token}) {
       },
       yaxis: [{
         title: {
-          text: 'Empalmes',
+          text: 'Lecturas',
         },
       }, {
         opposite: true,

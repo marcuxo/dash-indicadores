@@ -53,11 +53,11 @@ function LoginComponent() {
           }
         })
       } else {
-          setData({
-            ...data,
-            isSubmit: false,
-            errorMessage: "error en los datos ingresados"
-          })
+        setData({
+          ...data,
+          isSubmit: false,
+          errorMessage: "error en los datos ingresados"
+        })
       }
     })
   };

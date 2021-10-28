@@ -19,7 +19,7 @@ export default function Mantenedor({token}) {
   }
 
   let getData = async () => {
-    console.log(anno,mes)
+    //console.log(anno,mes)
     let response = await fetch(url+'/getdatamantenedor',{
       method: 'POST',
       headers: {

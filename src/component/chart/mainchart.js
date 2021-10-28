@@ -65,7 +65,7 @@ function Mainchart({titulo,token}) {
       },
       yaxis: [{
         title: {
-          text: 'Consumo cm3',
+          text: 'Consum m³',
         },
       }]
     },
