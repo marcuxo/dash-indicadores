@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { url } from '../url/url.link'
-import ModalEditCamp from './ModalEditCamp'
+// import ModalEditCamp from './ModalEditCamp'
 
 export default function Mantenedor({token}) {
   const [anno, setAnno] = useState('2021')
-  const [mes, setMes] = useState('01')
+  const [mes, setMes] = useState('00')
   const [arrheader, setArrHeader] = useState(null)
   const [arrTable, setArrTable] = useState(null)
+  const [showModal, setShowModal] = useState(false)
+  const [dataModal, setDataModal] = useState({valor:0, id:"", newvalor:0})
 
   let cptreAnno = async (event) =>{
     setAnno(event.target.value)
@@ -36,7 +38,40 @@ export default function Mantenedor({token}) {
     //await console.log(arrTable)
   }
   let modalEditCampo = async (e) => {
-    console.log(e.target.id, e.target.innerHTML)
+    // console.log(e.target.id, e.target.innerHTML)
+    setDataModal({...dataModal,valor:e.target.innerHTML,id:e.target.id})
+    setShowModal(true)
+  }
+  let closeModal = async () => {
+    setShowModal(false)
+  }
+  let updateMedidor = async () => {
+    //console.log(dataModal)
+    if(await updateDataToSRVR(dataModal)) {
+      getData()
+      closeModal()
+    }
+  }
+  let dataModalChange = async (e) => {
+    setDataModal({...dataModal,newvalor:e.target.value})
+  }
+
+  let updateDataToSRVR = async (datos) => {
+    //console.log("srvr",datos, dataModal)
+    let response = await fetch(url+'/uptadatemedidor',{
+      method: 'POST',
+      headers: {
+        'authorization': token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        valor: datos.newvalor,
+        id: datos.id
+      })
+    })
+    let data = await response.json()
+    return data.data.success
   }
 
   return (
@@ -105,9 +140,37 @@ export default function Mantenedor({token}) {
         </div>
         </>
         }
-
-        {/* <ModalEditCamp /> */}
       </div>
+        {!showModal?
+        null:
+        <div className="modal fade show fondostatico" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle"  style={{display: 'block'}}>
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header p-0">
+                <h5 className="modal-title pl-2" id="exampleModalCenterTitle">Editar Lectura</h5>
+              </div>
+              <div className="modal-body p-2">
+                <div className="row">
+                  <div className="col-6">
+                    <label>Valor Actual</label>
+                    <input type="text" className="form-control form-control-sm" value={dataModal.valor} readOnly/>
+                  </div>
+                  <div className="col-6">
+                    <label>Nuevo Valor</label>
+                    <input type="number" name="newvalue" onChange={dataModalChange} className="form-control form-control-sm" />
+                  </div>
+                </div>
+                
+              </div>
+              <div className="modal-footer p-1">
+                <button type="button" className="btn btn-sm btn-secondary" onClick={closeModal}>Cerrar</button>
+                <button type="button" className="btn btn-sm btn-primary" onClick={updateMedidor}>Guardar Cambios</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      
     </div>
   )
 }
