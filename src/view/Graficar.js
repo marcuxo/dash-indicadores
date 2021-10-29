@@ -106,7 +106,7 @@ export default function Graficar({token}) {
       },
       yaxis: [{
         title: {
-          text: 'Lectura Medidores',
+          text: 'Consumo Medidores (m³)',
         },
       }]
     },
@@ -167,12 +167,12 @@ export default function Graficar({token}) {
             </div>
           </div>
         </div>
-        <div className="col-12 py-3 ">
+        <div className="col-12 py-3">
           <Chart
             options={state.options || null}
             series={state.series || null}
             type="bar"
-            height="500px"
+            height="600px"
           />
         </div>
       </div>
