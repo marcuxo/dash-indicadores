@@ -78,7 +78,7 @@ export default function Mantenedor({token}) {
     <div className="container-fluid fondostatico pb-5">
       <div className="row">
         <div className="col-12 py-3">
-          <h5>Mantenedor</h5>
+          <h5>Mantenedor Lecturas</h5>
         </div>
         <div className="col-12 col-md-4">
           <label>Seleccione Año</label>
