@@ -1,4 +1,4 @@
-let url = "http://localhost:4087"
+let url = ""
 
 module.exports = {
   url
