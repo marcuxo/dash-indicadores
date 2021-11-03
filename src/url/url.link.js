@@ -4,4 +4,4 @@ module.exports = {
   url
 }
 
-/** marcuxo  marcuXo*/
+/** marcuxo */
