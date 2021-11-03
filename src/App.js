@@ -66,7 +66,7 @@ function App() {
         {!state.token
         ? <LoginComp />
         :state.user === "superUser"
-        ?<HashRouter basename="/">
+        ?<Router>
           {console.log("superUser")}
           <div className="container-fluid text-center mb-3 mainmenuh" id="toHeader">
               <img src="./favicon.jpg" className="rounded-circle" alt=""/>
@@ -87,7 +87,7 @@ function App() {
               {/* <Router exact path='/'>< /></Router> */}
               <Router path='*'><NotFound /></Router>
           </Switch>
-        </HashRouter>
+        </Router>
         :
         <Router>
           <div className="d-flex justify-content-end ">
