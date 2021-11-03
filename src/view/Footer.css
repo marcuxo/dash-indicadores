@@ -1,0 +1,24 @@
+.externo {
+  position: fixed;
+  bottom: -2px;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.interno {
+  font-size: small;
+  text-decoration: none;
+  
+  background-color: rgb(0, 0, 0);
+  text-align: center;
+  width: 50%;
+  border-radius: 50% 50% 0% 100% / 100% 100% 0% 0%;
+  /* clip-path: polygon(0% 35%, 17% 2%, 21% 37%, 31% 17%, 36% 32%, 49% 6%, 63% 34%, 86% 8%, 85% 30%, 100% 30%, 94% 60%, 79% 98%, 66% 62%, 63% 94%, 53% 76%, 42% 100%, 31% 62%, 17% 96%, 14% 66%); */
+  box-shadow: 0px -2px 15px 10px #0000006e;
+}
+.interno a {
+  color: beige;
+  font-size: small;
+  text-decoration: none;
+}

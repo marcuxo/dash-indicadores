@@ -6,7 +6,9 @@ import OutOfApp from './component/OutOfApp';
 import NotFound from './view/notfounh';
 import Mantenedor from './view/Mantenedor';
 import Graficar from './view/Graficar';
-import {BrowserRouter as Router, Switch, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Link, HashRouter} from 'react-router-dom';
+import Guest from './view/Guest';
+import Footer from './view/Footer';
 
 export const AuthContext = React.createContext();
 const initialState = {
@@ -17,7 +19,7 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      sessionStorage.setItem('user',JSON.stringify(action.payload.user));
+      sessionStorage.setItem('user',action.payload.user);
       sessionStorage.setItem('token',action.payload.token);
       return {
         ...state,
@@ -42,9 +44,8 @@ const reducer = (state, action) => {
 function App() {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   React.useEffect(() => {
-    const user = JSON.parse(sessionStorage.getItem('user') || null)
+    const user = sessionStorage.getItem('user') || null
     const token = sessionStorage.getItem('token') || null
-
     if(user && token){
       dispatch({
         type: 'LOGIN',
@@ -55,16 +56,19 @@ function App() {
       })
     }
   }, [])
+  
   return (
     <AuthContext.Provider
       value={{state,dispatch}}
+     
     >
-      <div className="App">
+      <div className="App"> {console.log(state.user)}
         {!state.token
         ? <LoginComp />
-        : 
-        <Router>
-          <div className="container-fluid text-center mb-3 mainmenuh">
+        :state.user === "superUser"
+        ?<HashRouter basename="/">
+          {console.log("superUser")}
+          <div className="container-fluid text-center mb-3 mainmenuh" id="toHeader">
               <img src="./favicon.jpg" className="rounded-circle" alt=""/>
             <div className="d-flex justify-content-end ">
               <div><Link className="btn btn-sm btn-info mx-2" to='/'><span className="text-white"><i className="fas fa-home"></i> Inicio</span></Link></div>
@@ -83,8 +87,21 @@ function App() {
               {/* <Router exact path='/'>< /></Router> */}
               <Router path='*'><NotFound /></Router>
           </Switch>
+        </HashRouter>
+        :
+        <Router>
+          <div className="d-flex justify-content-end ">
+            <div><Link className="btn btn-sm btn-info mx-2" to='/'><span className="text-white"><i className="fas fa-home"></i> Inicio</span></Link></div>
+            <div><Link className="btn btn-sm btn-danger mx-2" to='/outapp'><span className="text-white"><i className="fas fa-sign-out-alt"></i> Salir</span></Link></div>
+          </div>
+          <Switch>
+            <Router exact path='/'><Guest token={state.token} /></Router>
+            <Router exact path='/outapp'><OutOfApp /></Router>
+            <Router path='*'><NotFound /></Router>
+          </Switch>
         </Router>
         }
+        <Footer />
       </div>
     
     </AuthContext.Provider>

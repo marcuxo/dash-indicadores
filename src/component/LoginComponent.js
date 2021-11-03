@@ -48,7 +48,7 @@ function LoginComponent() {
         dispatch({
           type: "LOGIN",
           payload: {
-            user: "user",
+            user: "superUser",
             token: resp.data.token
           }
         })
@@ -62,6 +62,35 @@ function LoginComponent() {
     })
   };
   
+  const LoginGuestComponent_ = async () => {
+    fetch(url+'/guestin',{
+      method: 'POST',
+      headers: {
+        'authorization': "paico 2021",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      if(res.data.success) {
+        dispatch({
+          type: "LOGIN",
+          payload: {
+            user: res.data.rol,
+            token: res.data.token
+          }
+        })
+      } else {
+        setData({
+          ...data,
+          isSubmit: false,
+          errorMessage: "Error en servidor. intentelo mas tarde"
+        })
+      }
+    })
+
+  }
   return (
       <div className="container">
         <div className="row" style={{height: '100vh'}}>
@@ -106,6 +135,9 @@ function LoginComponent() {
                 )}
               </button>
             </form>
+          <div className="col-12 text-right pt-3">
+            <button className="btn btn-link" onClick={LoginGuestComponent_} title="dsds">Entrar como Invitado</button>
+          </div>
           </div>
           <div className="col-12 col-md-6 d-flex align-items-center text-center justify-content-center">
             <img src="/img/logo_ariztia.png" alt="Ariztia" />

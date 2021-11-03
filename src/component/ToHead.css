@@ -1,0 +1,23 @@
+.bg-tohead {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 25px;
+  height: 25px;
+  padding: 0px 0px;
+  background-color: rgb(255, 3, 3);
+  border-radius: 50px;
+  box-shadow: 0px 0px 15px 5px black;
+}
+
+.tohead {
+  position: relative;
+  top: -2px;
+  left: -2px;
+  color: white;
+  font-size: 30px;
+}
+.bg-tohead:hover {
+  color: rgb(255, 254, 254);
+  box-shadow: 0px 0px 15px 5px rgb(46, 43, 0);
+}

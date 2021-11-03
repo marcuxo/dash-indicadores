@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import ToHead from '../component/ToHead'
 import { url } from '../url/url.link'
 // import ModalEditCamp from './ModalEditCamp'
 
@@ -10,6 +11,33 @@ export default function Mantenedor({token}) {
   const [showModal, setShowModal] = useState(false)
   const [dataModal, setDataModal] = useState({valor:0, id:"", newvalor:0})
 
+  /** btn scropll */
+  const [y, setY] = useState(window.scrollY)
+  const [showBTNup, setshowBTNup] = useState(false)
+
+  const HandleScroll = useCallback(
+    (e) => {
+      const window = e.currentTarget;
+      if(window.scrollY > 300){
+        // console.log("scroll arriba",y, )
+        setshowBTNup(true)
+      } else {
+        // console.log("scroll abajo", y, window.scrollY)
+        setshowBTNup(false)
+      }
+      setY(window.scrollY)
+    },
+    [y],
+  )
+
+  useEffect(() => {
+    setY(window.scrollY)
+    window.addEventListener("scroll", HandleScroll)
+    return () => {
+      window.removeEventListener("scroll", HandleScroll)
+    }
+  }, [HandleScroll])
+  /** btn scroll */
   let cptreAnno = async (event) =>{
     setAnno(event.target.value)
   }
@@ -75,7 +103,7 @@ export default function Mantenedor({token}) {
   }
 
   return (
-    <div className="container-fluid fondostatico pb-5">
+    <div className="container-fluid fondostatico pb-5" >
       <div className="row">
         <div className="col-12 py-3">
           <h5>Mantenedor Lecturas</h5>
@@ -170,7 +198,11 @@ export default function Mantenedor({token}) {
           </div>
         </div>
         }
-      
+        {showBTNup?
+        <ToHead />
+          :
+          <></>
+        }
     </div>
   )
 }

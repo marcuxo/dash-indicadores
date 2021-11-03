@@ -21,8 +21,8 @@ export default function GetlastdataimpComponent() {
   }, [])
   
   return (
-    <div>
-      <p className="btn btn-primary">
+    <div className="col pt-3">
+      <p className="btn btn-primary btn-sm">
         Fecha Ultimos Datos Guardados <span className="badge badge-light">{ultimo}</span>
         <span className="sr-only">unread messages</span>
       </p>
