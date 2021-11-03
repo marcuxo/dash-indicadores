@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Chart from 'react-apexcharts'
 import {url} from '../../url/url.link'
-
+/** Marcuxo */
 function Mainchart({titulo,token}) {
   const [categoria, setCategoria] = useState(['Cargando'])
   const [serie, setSerie] = useState([{name:"",data:[0]}])
