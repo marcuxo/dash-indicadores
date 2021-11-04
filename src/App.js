@@ -63,12 +63,12 @@ function App() {
       value={{state,dispatch}}
      
     >
-      <div className="App"> {console.log(state.user)}
+      <div className="App">
         {!state.token
         ? <LoginComp />
         :state.user === "superUser"
         ?<Router>
-          {console.log("superUser")}
+          
           <div className="container-fluid text-center mb-3 mainmenuh" id="toHeader">
               <img src="./favicon.jpg" className="rounded-circle" alt=""/>
             <div className="d-flex justify-content-end ">
