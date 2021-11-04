@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import ToHead from '../component/ToHead'
 import { url } from '../url/url.link'
+import { formatNumeral, unFormatNumeral} from '../component/FormatNumber'
 // import ModalEditCamp from './ModalEditCamp'
 
 export default function Mantenedor({token}) {
@@ -157,7 +158,7 @@ export default function Mantenedor({token}) {
                     onClick={an.ID?modalEditCampo:null}
                     className={index!==0?"text-right":""}
                     >
-                      {an.VALOR}
+                      {index===0?an.VALOR:formatNumeral(an.VALOR)}
                     </td>)
                   }
                 </tr>)
