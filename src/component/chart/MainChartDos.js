@@ -52,12 +52,12 @@ function MainchartDos({titulo,token}) {
       },
       yaxis: [{
         title: {
-          text: 'Consumos mw/h',
+          text: 'Consumos kw/h',
         },
       }, {
         opposite: true,
         title: {
-          text: 'Consumo General mw/h'
+          text: 'Consumo General kw/h'
         }
       }]
     },
