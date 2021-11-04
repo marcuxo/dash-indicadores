@@ -6,9 +6,10 @@ import OutOfApp from './component/OutOfApp';
 import NotFound from './view/notfounh';
 import Mantenedor from './view/Mantenedor';
 import Graficar from './view/Graficar';
-import {BrowserRouter as Router, Switch, Link, HashRouter} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Link} from 'react-router-dom';
 import Guest from './view/Guest';
 import Footer from './view/Footer';
+/** Marcuxo 2021 */
 
 export const AuthContext = React.createContext();
 const initialState = {
