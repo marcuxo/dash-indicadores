@@ -67,7 +67,19 @@ function Mainchart({titulo,token}) {
         title: {
           text: 'Consum m³',
         },
-      }]
+      }],
+      tooltip: {
+        shared: true,
+        intersect: false,
+        y: {
+          formatter: function (y) {
+            if(typeof y !== "undefined") {
+              return  y + " m³";
+            }
+            return y;
+          }
+        }
+      }
     },
   }
 

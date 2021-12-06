@@ -154,7 +154,7 @@ export default function Graficar({token}) {
                 options={listOptions}
                 onChange={getDataInput}
                 isDisabled={isLoading}
-                placeholder="Seleccione Medidores a Graficar"
+                placeholder="Seleccione La o las Empresas"
               />
             </div>
             <div className="col-12 col-md-4 ">

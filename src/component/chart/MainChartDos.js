@@ -34,9 +34,28 @@ function MainchartDos({titulo,token}) {
     series: serie,
     options: {
       chart: {
+        // background:'linear-gradient(180deg, rgba(0,252,21,0.7595413165266106) 0%, rgba(238,252,0,0.7595413165266106) 36%, rgba(247,0,0,1) 74%, rgba(252,0,0,1) 100%)',
         height: 350,
         type: 'bar',
       },
+      // annotations: {
+      //   yaxis: [{
+      //     y: 250000,
+      //     y2: 400000,
+      //     borderColor: '#000',
+      //     fillColor: '#49ff00',
+      //     opacity: 0.2,
+      //     label: {
+      //       borderColor: '#32ad00',
+      //       style: {
+      //         fontSize: '10px',
+      //         color: '#FFF',
+      //         background: '#32AD00',
+      //       },
+      //       text: 'Rango Aceptable',
+      //     }
+      //   }]
+      // },
       stroke: {
         curve: 'smooth',
         width: [0, 4]
@@ -53,13 +72,28 @@ function MainchartDos({titulo,token}) {
       yaxis: [{
         title: {
           text: 'Consumos kw/h',
+          style:{
+            color: '#000'
+          }
         },
       }, {
         opposite: true,
         title: {
           text: 'Consumo General kw/h'
         }
-      }]
+      }],
+      tooltip: {
+        shared: true,
+        intersect: false,
+        y: {
+          formatter: function (y) {
+            if(typeof y !== "undefined") {
+              return  y + " kwh";
+            }
+            return y;
+          }
+        }
+      }
     },
   }
 
