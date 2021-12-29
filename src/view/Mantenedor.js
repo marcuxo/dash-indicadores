@@ -112,7 +112,8 @@ export default function Mantenedor({token}) {
         <div className="col-12 col-md-4">
           <label>Seleccione Año</label>
           <select name="anno" className="form-control form-control-sm" onChange={cptreAnno}>
-            <option>2021</option>
+            <option selected>2021</option>
+            <option>2022</option>
           </select>
         </div>
         <div className="col-12 col-md-4">
