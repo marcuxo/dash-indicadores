@@ -125,6 +125,7 @@ export default function Graficar({token}) {
               <select name="anno" className="form-control form-control-sm" onChange={cptreAnno}>
                 <option>2021</option>
                 <option>2022</option>
+                <option>2023</option>
               </select>
             </div>
             <div className="col-12 col-md-4">

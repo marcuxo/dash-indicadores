@@ -6,7 +6,7 @@ import { formatNumeral, unFormatNumeral} from '../component/FormatNumber'
 
 export default function Mantenedor({token}) {
   const [anno, setAnno] = useState('2021')
-  const [mes, setMes] = useState('00')
+  const [mes, setMes] = useState('01')
   const [arrheader, setArrHeader] = useState(null)
   const [arrTable, setArrTable] = useState(null)
   const [showModal, setShowModal] = useState(false)
